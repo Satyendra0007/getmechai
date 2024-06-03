@@ -1,0 +1,1 @@
+export { auth as midleware } from "@/auth"

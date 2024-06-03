@@ -1,7 +1,6 @@
 import React from 'react'
-import LoginButton from '../Components/LoginButton'
+import SignInButton from '../Components/SignInButton'
 import Image from 'next/image'
-import Link from 'next/link'
 
 export default function page() {
   return (
@@ -17,9 +16,8 @@ export default function page() {
             </div>
           </div>
           <div className='flex justify-center items-center flex-col gap-y-3'>
-            <LoginButton name={"github"} src={"/github.png"} />
-            <LoginButton name={"google"} src={"/google.png"} />
-
+            <SignInButton name={"github"} src={"/github.png"} />
+            <SignInButton name={"google"} src={"/google.png"} />
           </div>
         </div>
       </div>

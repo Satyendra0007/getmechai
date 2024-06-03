@@ -1,19 +1,32 @@
+'use client'
 import React from 'react'
 import List from '../Components/List'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 export default function page() {
+
+  const session = useSession()
+  const router = useRouter()
+
+  if (session.status === 'unauthenticated') {
+    router.push('/login')
+    console.clear()
+  }
+
   return (
     <div>
+
       <div className="banner w-full h-52 md:h-96">
         <img className='w-full h-full' src="/banner.jpg" alt="" />
       </div>
       <div className="profile flex flex-col relative px-4 md:flex-row md:px-10 md:gap-10">
         <div className="image h-14 md:w-60 md:h-60">
-          <img className=' w-32 h-32 md:w-60 md:h-60 rounded-full absolute -top-[50%]' src="https://p1.hiclipart.com/preview/323/743/633/icon-person-icon-design-symbol-avatar-silhouette-character-cartoon-head-png-clipart.jpg" alt="" />
+          <img className=' w-32 h-32 md:w-60 md:h-60 rounded-full absolute -top-[50%]' src={session?.data?.user?.image ? session?.data?.user?.image : "https://p1.hiclipart.com/preview/323/743/633/icon-person-icon-design-symbol-avatar-silhouette-character-cartoon-head-png-clipart.jpg"} alt="" />
         </div>
         <div className="info py-4 space-y-2 ">
-          <div className="name text-lg md:text-4xl font-bold text-rose-600">Satyendra Kumar</div>
-          <div className="email text-sm md:text-base">skchandrawansi03@gmail.com</div>
+          <div className="name text-lg md:text-4xl font-bold text-rose-600">{session?.data?.user?.name}</div>
+          <div className="email text-sm md:text-base">{session?.data?.user?.email}</div>
         </div>
       </div>
 
