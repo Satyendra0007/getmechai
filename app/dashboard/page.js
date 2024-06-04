@@ -4,7 +4,7 @@ import List from '../Components/List'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
-export default function page() {
+export default function Page() {
 
   const session = useSession()
   const router = useRouter()
